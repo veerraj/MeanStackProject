@@ -1,0 +1,72 @@
+<div class="container new">
+    <label><h3>Mean Stack</h3></label>
+    <div class="row">
+        
+      <div class="col-md-4 col-offset-6 ">
+        <form #bookForm="ngForm" (ngSubmit)="onBookSave()">
+          <div class="form-group">
+            <label for="title">Book_Title:</label>
+            <input type="text" 
+            class="form-control" 
+            name="title" 
+            #name="ngModel"
+            [(ngModel)]="title"
+            required>
+          </div>
+          <div class="form-group">
+            <label for="author">Author:</label>
+            <input type="text"
+             class="form-control" 
+             name="author" 
+             #name="ngModel"
+             [(ngModel)]="author"
+             required>
+          </div>
+          <div class="form-group">
+            <label for="catagory">Catagory:</label>
+            <input type="text" 
+            class="form-control"
+             name="catagory"
+             #name="ngModel"
+             [(ngModel)]="catagory"
+             required>
+          </div>
+          
+             <button type="submit" class="btn btn-info" [disabled]="!bookForm.valid">Submit</button>
+          
+         
+         
+        </form>
+        
+        <button type="submit" class="btn btn-primary mr-4" (click)="onUpdate()">Update</button>
+        <button type="submit" class="btn btn-success" (click)="showData()">ShowData</button>
+      </div>
+     
+    </div>
+  </div>
+  <div class="container">
+      <div class="row">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Book_Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Catagory</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let book of books;let i=index">
+              <tr>
+                <th scope="row">{{i+1}}</th>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.catagory}}</td>
+                <td><button class="btn btn-success" id={{book._id}} (click)="onEdit($event,book)">Edit</button></td>
+                <td><button class="btn btn-danger"  id={{book._id}} (click)="onDelete($event)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+  
+  
